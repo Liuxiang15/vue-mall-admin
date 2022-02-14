@@ -1,0 +1,44 @@
+.home .menu-list {
+  width: 180px;
+  position: fixed;
+  height: 100%;
+}
+.home .menu-list .ant-menu {
+  height: 100%;
+}
+.home .main-app {
+  margin-left: 180px;
+  transition: all 0.3s;
+}
+.home .main-app.menu-unfold {
+  margin-left: 80px;
+}
+.home .main-app .main-header {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  padding: 0 10px 0 20px;
+}
+.home .main-app .main-header .breadcrumb {
+  display: inline-block;
+  margin-left: 20px;
+}
+.home .main-app .main-header .user-info {
+  float: right;
+  cursor: pointer;
+  text-align: center;
+}
+.home .main-app .main-header .user-info li:not(:first-child) {
+  display: none;
+}
+.home .main-app .main-header .user-info li:not(:first-child):hover {
+  background-color: #eee;
+  color: #999;
+  font-size: 700;
+}
+.home .main-app .main-header .user-info li {
+  padding: 0 20px;
+}
+.home .main-app .main-header .user-info:hover li {
+  display: block;
+}
