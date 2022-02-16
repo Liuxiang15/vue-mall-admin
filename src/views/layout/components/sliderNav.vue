@@ -13,22 +13,27 @@
     </div>
     <ul class="user-info">
       <li>
-        欢迎dongmeiqi
+        {{ $store.state.user.username }}
         <a-icon type="down" />
       </li>
-      <li>退出</li>
+      <li @click="logOut">退出</li>
     </ul>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     toggleCollapsed() {
       this.$store.dispatch('changeCollapsed');
+    },
+    logOut() {
+      this.$store.dispatch('logOut');
+      this.$router.push({
+        name: 'Login',
+      });
     },
   },
 };
