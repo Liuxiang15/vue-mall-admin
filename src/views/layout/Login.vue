@@ -69,7 +69,7 @@ export default {
           api
             .login(this.loginForm)
             .then((res) => {
-              console.log(res);
+              // console.log(res);
               this.$store.dispatch('setUserInfo', res);
               this.$router.push({
                 name: 'Home',
@@ -80,7 +80,7 @@ export default {
             });
           return true;
         }
-        console.log('error submit!!');
+        // console.log('error submit!!');
         return false;
       });
     },
