@@ -70,6 +70,7 @@ const routes = [
     name: 'Login',
     meta: {
       title: '登录',
+      hidden: true,
     },
     component: Login,
   },
