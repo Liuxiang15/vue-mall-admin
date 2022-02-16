@@ -13,6 +13,7 @@ const asyncRouterMap = [
     name: 'Product',
     meta: {
       title: '商品',
+      icon: 'inbox',
     },
     component: Home,
     children: [
@@ -21,6 +22,7 @@ const asyncRouterMap = [
         name: 'ProductList',
         meta: {
           title: '商品列表',
+          icon: 'unordered-list',
         },
         component: () => import('../views/page/productList.vue'),
       },
@@ -29,6 +31,7 @@ const asyncRouterMap = [
         name: 'ProductAdd',
         meta: {
           title: '添加商品',
+          icon: 'file-add',
         },
         component: () => import('../views/page/productAdd.vue'),
       },
@@ -37,6 +40,7 @@ const asyncRouterMap = [
         name: 'Category',
         meta: {
           title: '类目管理',
+          icon: 'project',
         },
         component: () => import('../views/page/category.vue'),
       },
@@ -51,6 +55,7 @@ const routes = [
     component: Home,
     meta: {
       title: '首页',
+      icon: 'home',
     },
     children: [
       {
@@ -58,6 +63,7 @@ const routes = [
         name: 'Index',
         meta: {
           title: '统计',
+          icon: 'number',
         },
         // component: Index
         // 懒加载
@@ -99,9 +105,13 @@ router.beforeEach((to, from, next) => {
         const menuRoutes = getMenuRoute(asyncRouterMap, store.state.user.role);
         console.log(menuRoutes);
         // 会添加多次，报栈溢出错
-        router.addRoutes(menuRoutes);
+        // router.addRoutes(menuRoutes); // bug
         // 这里不是vue实例，所以不能用this.$store
-        store.dispatch('changeMenuRoutes', [...routes, ...menuRoutes]);
+        store.dispatch('changeMenuRoutes', [...routes, ...menuRoutes]).then(() => {
+          router.addRoutes(menuRoutes); // ok
+          next();
+          // router.addRoutes(menuRoutes); //ok
+        });
         isAddRoutes = true;
       }
       return next();

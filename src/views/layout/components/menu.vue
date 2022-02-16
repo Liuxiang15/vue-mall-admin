@@ -20,13 +20,18 @@
         :key="route.name"
       >
         <span slot="title">
-          <a-icon type="mail" />
+          <a-icon :type="route.meta.icon" />
           <span>{{ route.meta.title }}</span>
         </span>
         <a-menu-item
           v-for="child in (route.children || []).filter(r => !r.meta.hidden)"
           :key="child.name"
-          >{{ child.meta.title }}</a-menu-item
+          >
+          <router-link :to="{name:child.name}">
+            <a-icon :type="child.meta.icon" />
+            {{ child.meta.title }}
+          </router-link>
+          </a-menu-item
         >
       </a-sub-menu>
     </a-menu>
