@@ -15,6 +15,7 @@ export default new Vuex.Store({
     //   email: ""
     // }
     user: getUserCookie(),
+    routes: [],
     // 初始化的时候需要获取用户cookie，所以这里直接用方法
   },
   mutations: {
@@ -32,6 +33,9 @@ export default new Vuex.Store({
         email: '',
       };
     },
+    changeMenuRoutes(state, routes) {
+      state.routes = routes;
+    },
   },
   actions: {
     changeCollapsed({ commit }) {
@@ -46,6 +50,9 @@ export default new Vuex.Store({
     logOut({ commit }) {
       commit('logOut');
       removeUserCookie();
+    },
+    changeMenuRoutes({ commit }, routes) {
+      commit('changeMenuRoutes', routes);
     },
   },
   modules: {},
