@@ -55,6 +55,7 @@ const columns = [
     title: '上架状态',
     dataIndex: 'status',
     key: 'status',
+    // text文本， record 当前这条数据
     customRender(text, record) {
       return record.status === 1 ? '上架' : '下架';
     },
