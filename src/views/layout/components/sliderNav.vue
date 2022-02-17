@@ -5,9 +5,11 @@
     </a-button>
     <div class="breadcrumb">
       <a-breadcrumb>
-        <a-breadcrumb-item>首页</a-breadcrumb-item>
+        <a-breadcrumb-item>{{currentRoute[0]?currentRoute[0].meta.title:""}}</a-breadcrumb-item>
         <a-breadcrumb-item>
-          <a href>统计</a>
+          <router-link :to="{name:currentRoute[1].name}">
+            {{currentRoute[1]?currentRoute[1].meta.title:""}}
+          </router-link>
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
@@ -23,7 +25,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      currentRoute: this.$router.currentRoute.matched,
+    };
+  },
+  watch: {
+    $route() {
+      console.log(this.$route);
+
+      this.currentRoute = this.$router.currentRoute.matched;
+    },
   },
   methods: {
     toggleCollapsed() {
