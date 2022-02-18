@@ -87,6 +87,7 @@ export default {
       this.$confirm({
         title: '确认删除',
         content: () => <div style="color:red;">{`确认删除标题为:${record.title}的商品吗`}</div>,
+        // 这里用箭头函数绑定this为当前vue对象
         onOk: () => {
           api.remove({
             id: record.id,

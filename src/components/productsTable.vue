@@ -1,6 +1,7 @@
 <template>
   <a-table :columns="columns" :data-source="tableData" :pagination="page" @change="changePage">
     <div slot="operation" slot-scope="text, record">
+      <!-- text是文本, record是这条记录 -->
       <a-button @click="editProduct(record)">编辑</a-button>
       <a-button @click="removeProduct(record)">删除</a-button>
     </div>
