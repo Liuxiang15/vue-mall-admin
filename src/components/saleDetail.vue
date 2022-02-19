@@ -66,6 +66,17 @@ export default {
     };
   },
   props: ['form'],
+  created() {
+    // 编辑时展示图片
+    if (this.form.images.length > 0) {
+      this.fileList = this.form.images.map((item, index) => ({
+        uid: index,
+        name: `image-${index}.png`,
+        status: 'done',
+        url: item,
+      }));
+    }
+  },
   methods: {
     handleChange({ file, fileList }) {
       console.log(file);
