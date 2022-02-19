@@ -48,24 +48,24 @@
 export default {
   computed: {
     defaultSelectKey: {
-      get () {
+      get() {
         return this.$router.currentRoute.matched[1]
           ? this.$router.currentRoute.matched[1].name
           : '';
       },
     },
     defaultOpenKey: {
-      get () {
+      get() {
         return this.$router.currentRoute.matched[0].name;
       },
     },
   },
   watch: {
-    "$route": function () {
+    $route() {
 
-    }
+    },
   },
-  created () {
+  created() {
     console.log('this.$router', this.$router);
     // window.$router = this.$router;
   },
