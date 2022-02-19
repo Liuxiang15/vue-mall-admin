@@ -5,10 +5,8 @@
     <!-- 默认选中
     默认展开 -->
     <a-menu
-      :default-selected-keys="[
-        $router.currentRoute.matched[1] ? $router.currentRoute.matched[1].name : ''
-      ]"
-      :default-open-keys="[$router.currentRoute.matched[0].name]"
+      :default-selected-keys="[defaultSelectKey]"
+      :default-open-keys="[defaultOpenKey]"
       mode="inline"
       theme="dark"
       :inline-collapsed="$store.state.collapsed"
@@ -23,7 +21,7 @@
           <a-icon :type="route.meta.icon" />
           <span>{{ route.meta.title }}</span>
         </span>
-        <a-menu-item
+        <!-- <a-menu-item
           v-for="child in (route.children || []).filter(r => !r.meta.hidden)"
           :key="child.name"
           >
@@ -32,7 +30,15 @@
             {{ child.meta.title }}
           </router-link>
           </a-menu-item
-        >
+        > -->
+        <template v-for="child in route.children">
+          <a-menu-item v-if="!child.meta.hidden"  :key="child.name">
+            <router-link :to="{name: child.name}">
+              <a-icon :type="child.meta.icon" />
+              {{child.meta.title}}
+            </router-link>
+          </a-menu-item>
+        </template>
       </a-sub-menu>
     </a-menu>
   </div>
@@ -40,6 +46,25 @@
 
 <script>
 export default {
+  computed: {
+    defaultSelectKey: {
+      get() {
+        return this.$router.currentRoute.matched[1]
+          ? this.$router.currentRoute.matched[1].name
+          : '';
+      },
+    },
+    defaultOpenKey: {
+      get() {
+        return this.$router.currentRoute.matched[0].name;
+      },
+    },
+  },
+  watch: {
+    $route() {
+
+    },
+  },
   created() {
     console.log('this.$router', this.$router);
     // window.$router = this.$router;
